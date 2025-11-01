@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summer Romack's Bookshelf</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.3em;
+            color: #718096;
+            font-weight: 300;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .book-title {
+            font-size: 1.4em;
+            color: #2d3748;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .book-author {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .book-description {
+            color: #4a5568;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .book-link {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .book-link:hover {
+            background: #5568d3;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .empty-state h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #718096;
+            font-size: 0.9em;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .tagline {
+                font-size: 1.1em;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Summer Romack's Bookshelf</h1>
+            <p class="tagline">Books that shaped my career</p>
+        </header>
+
+        <div class="books-grid" id="booksContainer">
+            <!-- Books will be displayed here -->
+        </div>
+
+        <footer>
+            <p>Want to discuss any of these books? Feel free to reach out!</p>
+        </footer>
+    </div>
+
+    <script>
+        // ADD YOUR BOOKS HERE
+        // Simply add more book objects to this array
+        const books = [
+            {
+                title: "The Goal",
+                author: "Eliyahu M. Goldratt",
+                description: "A transformative book on systems thinking and continuous improvement. This novel approach to understanding constraints and bottlenecks changed how I think about optimizing workflows and processes.",
+                link: "https://www.worldofbooks.com/products/goal-book-eliyahu-m-goldratt-9780884270614",
+                cover: "https://covers.openlibrary.org/b/isbn/0884270610-L.jpg"
+            },
+            {
+                title: "Range: Why Generalists Triumph in a Specialized World",
+                author: "David Epstein",
+                description: "Challenges the conventional wisdom about specialization. This book reinforced the value of diverse experiences and broad knowledge in developing creative problem-solving skills.",
+                link: "https://www.worldofbooks.com/products/range-book-david-epstein-9780735214484",
+                cover: "https://covers.openlibrary.org/b/isbn/9780735214484-L.jpg"
+            },
+            {
+                title: "Drive: The Surprising Truth About What Motivates Us",
+                author: "Daniel H. Pink",
+                description: "Reshaped my understanding of motivation in the workplace. Pink's insights on autonomy, mastery, and purpose have influenced how I approach team leadership and personal growth.",
+                link: "https://www.worldofbooks.com/products/drive-book-daniel-h-pink-9781594484803",
+                cover: "https://covers.openlibrary.org/b/isbn/9781594484803-L.jpg"
+            },
+            {
+                title: "First, Break All the Rules",
+                author: "Gallup",
+                description: "Data-driven insights into what the world's greatest managers do differently. This book provided practical frameworks for building strong teams and developing talent.",
+                link: "https://www.worldofbooks.com/products/first-break-all-the-rules-book-gallup-9781595621115",
+                cover: "https://covers.openlibrary.org/b/isbn/9781595621115-L.jpg"
+            },
+            {
+                title: "The Infinite Game",
+                author: "Simon Sinek",
+                description: "Transformed my perspective on long-term thinking and sustainable success. Sinek's framework for playing the infinite game rather than the finite game has influenced how I approach strategy and leadership.",
+                link: "https://simonsinek.com/books/the-infinite-game/",
+                cover: "https://covers.openlibrary.org/b/isbn/9780735213500-L.jpg"
+            },
+            // Add more books below - copy the format above
+        ];
+
+        // Display books on the page
+        function displayBooks() {
+            const container = document.getElementById('booksContainer');
+            
+            if (books.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h2>Coming Soon!</h2>
+                        <p>Book recommendations will be added here soon.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = books.map(book => `
+                <div class="book-card">
+                    <img src="${book.cover}" alt="${book.title} cover" class="book-cover">
+                    <div class="book-title">${book.title}</div>
+                    <div class="book-author">by ${book.author}</div>
+                    <p class="book-description">${book.description}</p>
+                    <a href="${book.link}" target="_blank" class="book-link">View Book</a>
+                </div>
+            `).join('');
+        }
+
+        displayBooks();
+    </script>
+</body>
+</html>
